@@ -12,6 +12,7 @@ public class YourInfomationPage {
     WebElement lastNameFiled;
     WebElement zipCodeField;
     WebElement continueButton;
+    WebElement errorMessage;
 
 
     public YourInfomationPage(WebDriver driver) {
@@ -33,6 +34,8 @@ public class YourInfomationPage {
     public WebElement getContinueButton() {
         return driver.findElement(By.id("continue"));
     }
+
+    public WebElement getErrorMessage(){return  driver.findElement(By.cssSelector("h3[data-test='error']"));}
 
     /// ///////////
 

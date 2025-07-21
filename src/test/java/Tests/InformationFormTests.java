@@ -55,8 +55,89 @@ public class InformationFormTests extends BaseTest {
         yourInfomationPage.getContinueButton().click();
 
 
+
         Assert.assertTrue(overviewPage.getPageHeader().getText().equals("Checkout: Overview"));
     }
+
+    @Test
+    public void userCantFillOutInputFormWithBlankData(){
+        landingPage.inputUserName("standard_user");
+        landingPage.inputPassword("secret_sauce");
+        landingPage.clickOnLoginButton();
+        productsPage.getAddToCartButton().click();
+        productsPage.getShoppingCart().click();
+        cartPage.getCheckoutButtonButton().click();
+        yourInfomationPage.getFirtsNamefield().clear();
+        yourInfomationPage.getLastNameFiled().clear();
+        yourInfomationPage.getZipCodeField().clear();
+        yourInfomationPage.getContinueButton().click();
+
+        Assert.assertTrue(yourInfomationPage.getErrorMessage().isDisplayed());
+        Assert.assertTrue(yourInfomationPage.getFirtsNamefield().isDisplayed());
+    }
+
+    @Test
+    public void userCantFillOutInputFormWithBlnkFirstName(){
+        landingPage.inputUserName("standard_user");
+        landingPage.inputPassword("secret_sauce");
+        landingPage.clickOnLoginButton();
+        productsPage.getAddToCartButton().click();
+        productsPage.getShoppingCart().click();
+        cartPage.getCheckoutButtonButton().click();
+        yourInfomationPage.getFirtsNamefield().clear();
+        yourInfomationPage.inputLastName("Petrovic");
+        yourInfomationPage.getZipCodeField().clear();
+        yourInfomationPage.getContinueButton().click();
+
+        Assert.assertTrue(yourInfomationPage.getErrorMessage().isDisplayed());
+        Assert.assertTrue(yourInfomationPage.getFirtsNamefield().isDisplayed());
+    }
+
+
+    @Test
+    public void userCantFillOutInputFormWithBlnkLastName(){
+        landingPage.inputUserName("standard_user");
+        landingPage.inputPassword("secret_sauce");
+        landingPage.clickOnLoginButton();
+        productsPage.getAddToCartButton().click();
+        productsPage.getShoppingCart().click();
+        cartPage.getCheckoutButtonButton().click();
+        yourInfomationPage.inputFirstName("Petar");
+        yourInfomationPage.getLastNameFiled().clear();
+        yourInfomationPage.getZipCodeField().clear();
+        yourInfomationPage.getContinueButton().click();
+
+        Assert.assertTrue(yourInfomationPage.getErrorMessage().isDisplayed());
+        Assert.assertTrue(yourInfomationPage.getFirtsNamefield().isDisplayed());
+    }
+
+    @Test
+    public void userCantFillOutInputFormWithBlankZipcode(){
+        landingPage.inputUserName("standard_user");
+        landingPage.inputPassword("secret_sauce");
+        landingPage.clickOnLoginButton();
+        productsPage.getAddToCartButton().click();
+        productsPage.getShoppingCart().click();
+        cartPage.getCheckoutButtonButton().click();
+        yourInfomationPage.inputFirstName("Petar");
+        yourInfomationPage.inputLastName("Petrovic");
+        yourInfomationPage.getZipCodeField().clear();
+        yourInfomationPage.getContinueButton().click();
+
+
+
+        Assert.assertTrue(yourInfomationPage.getErrorMessage().isDisplayed());
+        Assert.assertTrue(yourInfomationPage.getFirtsNamefield().isDisplayed());
+    }
+
+
+
+
+
+
+
+
+
 
     @AfterMethod
     public void closeBrowser(){
