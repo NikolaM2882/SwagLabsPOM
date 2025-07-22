@@ -59,6 +59,7 @@ public class InformationFormTests extends BaseTest {
         Assert.assertTrue(overviewPage.getPageHeader().getText().equals("Checkout: Overview"));
     }
 
+    /// Verify that use cant submit form with blank data
     @Test
     public void userCantFillOutInputFormWithBlankData(){
         landingPage.inputUserName("standard_user");
@@ -76,6 +77,7 @@ public class InformationFormTests extends BaseTest {
         Assert.assertTrue(yourInfomationPage.getFirtsNamefield().isDisplayed());
     }
 
+    ///  Verify user cant submit form with blank name
     @Test
     public void userCantFillOutInputFormWithBlnkFirstName(){
         landingPage.inputUserName("standard_user");
@@ -94,6 +96,7 @@ public class InformationFormTests extends BaseTest {
     }
 
 
+    ///  Verfiy user cant submit form with blank last name
     @Test
     public void userCantFillOutInputFormWithBlnkLastName(){
         landingPage.inputUserName("standard_user");
@@ -111,6 +114,8 @@ public class InformationFormTests extends BaseTest {
         Assert.assertTrue(yourInfomationPage.getFirtsNamefield().isDisplayed());
     }
 
+
+    ///  Verify user cant submit form with blank zipcode
     @Test
     public void userCantFillOutInputFormWithBlankZipcode(){
         landingPage.inputUserName("standard_user");

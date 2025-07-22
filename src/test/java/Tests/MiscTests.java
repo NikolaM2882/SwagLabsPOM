@@ -5,8 +5,10 @@ import Pages.CartPage;
 import Pages.LandingPage;
 import Pages.ProductsPage;
 import Pages.SingleProductPage;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.HdrDocumentImpl;
 import org.testng.Assert;
@@ -16,6 +18,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class MiscTests extends BaseTest {
 
@@ -41,6 +46,7 @@ public class MiscTests extends BaseTest {
 
     }
 
+    ///  Verify that user can view product details
     @Test
     public void userShouldBeAbleToViewProductDetails(){
 
@@ -59,6 +65,73 @@ public class MiscTests extends BaseTest {
 
 
     }
+
+
+    ///  Verify that user can sort products from a to z
+    @Test
+    public  void userShouldBeAbleToFilterProdutsAtoZ() throws InterruptedException {
+        landingPage.inputUserName("standard_user");
+        landingPage.inputPassword("secret_sauce");
+        landingPage.clickOnLoginButton();
+        Select sortOpcija = new Select(productsPage.getSortSelect());
+        sortOpcija.selectByValue("az");
+        Thread.sleep(2000);
+
+        List<String> reciZaFilter = new ArrayList<>();
+        List<String> titles = new ArrayList<>();
+        for (WebElement nekiElement : productsPage.getAllProductTitles()) {
+            String imeProizvoda = nekiElement.getText();
+
+            String delovi[] = imeProizvoda.split("Sauce Labs\\s+");
+            if (delovi.length > 1) {
+                String recZaFilter = delovi[1].split(" ")[0];
+                reciZaFilter.add(recZaFilter);
+            }
+
+            List<String> sortiraneReci = new ArrayList<>(reciZaFilter);
+            Collections.sort(sortiraneReci);
+
+            Assert.assertEquals(reciZaFilter, sortiraneReci);
+
+
+        }
+
+    }
+
+    ///  Verify that user can sort products from z to a
+    @Test
+    public  void userShouldBeAbleToFilterProdutsZtoA() throws InterruptedException {
+        landingPage.inputUserName("standard_user");
+        landingPage.inputPassword("secret_sauce");
+        landingPage.clickOnLoginButton();
+        Select sortOpcija = new Select(productsPage.getSortSelect());
+        sortOpcija.selectByValue("za");
+        Thread.sleep(2000);
+
+        List<String> reciZaFilter = new ArrayList<>();
+        List<String> titles = new ArrayList<>();
+        for (WebElement nekiElement : productsPage.getAllProductTitles()) {
+            String imeProizvoda = nekiElement.getText();
+
+            String delovi[] = imeProizvoda.split("Sauce Labs\\s+");
+            if (delovi.length > 1) {
+                String recZaFilter = delovi[1].split(" ")[0];
+                reciZaFilter.add(recZaFilter);
+            }
+
+            List<String> obrnuteReci = new ArrayList<>(reciZaFilter);
+            Collections.sort(obrnuteReci, Collections.reverseOrder());
+
+            Assert.assertEquals(reciZaFilter, obrnuteReci);
+
+
+        }
+
+    }
+
+
+
+
 
     @AfterMethod
     public void closeBrowser(){

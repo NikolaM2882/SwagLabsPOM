@@ -72,6 +72,10 @@ public class ProductsPage {
         return driver.findElements(By.className("inventory_item_price"));
     }
 
+    public WebElement getSortSelect(){
+        return  driver.findElement(By.className("product_sort_container"));
+    }
+
     /// ////
 
     public void clickOnBurger(){
