@@ -76,6 +76,20 @@ public class ProductsPage {
         return  driver.findElement(By.className("product_sort_container"));
     }
 
+    public WebElement getXButton(){
+        return driver.findElement(By.linkText("Twitter"));
+    }
+
+    public WebElement getFacebookButton(){
+        return driver.findElement(By.linkText("Facebook"));
+    }
+
+    public WebElement getLinkedinButton(){
+        return driver.findElement(By.linkText("LinkedIn"));
+    }
+
+
+
     /// ////
 
     public void clickOnBurger(){
@@ -86,6 +100,8 @@ public class ProductsPage {
         getLogoutLink().click();
 
     }
+
+
 
 
 }

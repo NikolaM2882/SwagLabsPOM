@@ -69,7 +69,7 @@ public class MiscTests extends BaseTest {
 
     ///  Verify that user can sort products from a to z
     @Test
-    public  void userShouldBeAbleToFilterProdutsAtoZ() throws InterruptedException {
+    public  void userShouldBeAbleToFilterProductsAtoZ() throws InterruptedException {
         landingPage.inputUserName("standard_user");
         landingPage.inputPassword("secret_sauce");
         landingPage.clickOnLoginButton();
@@ -126,6 +126,20 @@ public class MiscTests extends BaseTest {
 
 
         }
+
+    }
+
+    ///  Verify that user cant proceed to checkout with no cart items
+    @Test
+    public void userShouldntBeAbletoProceedToCheckoutWithNoCartItems(){
+        landingPage.inputUserName("standard_user");
+        landingPage.inputPassword("secret_sauce");
+        landingPage.clickOnLoginButton();
+        productsPage.getShoppingCart().click();
+        cartPage.getCheckoutButtonButton().click();
+
+        Assert.assertTrue(driver.getCurrentUrl().equals("https://www.saucedemo.com/cart.html"));
+        Assert.assertTrue(cartPage.getCheckoutButtonButton().isDisplayed());
 
     }
 
