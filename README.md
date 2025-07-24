@@ -7,7 +7,7 @@
 ## 🚀 Features
 
 - **Page Object Model** architecture for maintainable readability and reusability  
-- ✅ Automated test cases: login, logout, product listing, add to cart, checkout  
+- ✅ Automated test cases: login, logout, product listing, add to cart, checkout, sort function  
 - 🧪 Parallel test execution across browsers (Chrome, Firefox)  
 - ⚙️ Configurable via `config.properties`  
 - 📋 TestNG reporting out-of-the-box
@@ -75,7 +75,7 @@ SwagLabsPOM/
 ## 🧪 Tests Included
 
 - **Login & logout** validation  
-- **Product listing** checks and item detail navigation 
+- **Product listing** checks and item detail navigation, product sort
 - **Check out** testing whole process from add to cart to purchase confirmation 
 
 - Parallel execution of critical flows across multiple browsers
