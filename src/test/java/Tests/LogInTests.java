@@ -38,8 +38,8 @@ public class LogInTests extends BaseTest {
     public void listOfUsersCanLoginAndLogout() throws InterruptedException {
 
         for (int i = 0; i <= excelReader.getLastRow("Sheet1"); i++) {
-            String userName = excelReader.getStringData("Sheet1", 0, 0);
-            String password = excelReader.getStringData("Sheet1", 0, 1);
+            String userName = excelReader.getStringData("Sheet1", i, 0);
+            String password = excelReader.getStringData("Sheet1", i, 1);
 
             landingPage.inputUserName(userName);
             landingPage.inputPassword(password);
@@ -74,7 +74,7 @@ public class LogInTests extends BaseTest {
         }
 
 
-     // Verify yhat use can't log in with blank username
+     // Verify that use can't log in with blank username
     @Test
     public void userCantLoginWithBlankUserName(){
         landingPage.getUserNamefield().clear();
